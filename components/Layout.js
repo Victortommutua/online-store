@@ -3,7 +3,10 @@ import Link from 'next/link'
 import React, {useContext} from 'react'
 import { Store } from '../utils/Store'
 import {useState, useEffect} from 'react'
+import {ToastContainer} from 'react-toastify';
+import { useSession } from "next-auth/react"
 function Layout({title, children}) {
+    const { status, data: session } = useSession();
     const { state} = useContext(Store);
     const {cart} = state;
     const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -17,6 +20,7 @@ function Layout({title, children}) {
         <meta name="description" content="Your Favorite online shopping store" />
         <link rel="icon" href="/logo.svg"/>
       </Head>
+      <ToastContainer position='bottom-center' limit={1}/>
     <div className='flex min-h-screen flex-col justify-between'>
         <header>
             <nav className='flex h-12 justify-between items-center px-4 shadow-md'>
@@ -30,8 +34,17 @@ function Layout({title, children}) {
                             {cartItemsCount}
                         </span>
                     )}
-                    </a></Link>
-                    <Link href='/login'><a className='p-2'> Login </a></Link>
+                    </a>
+                    </Link>
+                        {status === 'loading' ? (
+                            'Loading'
+                            ): session?.user ? (
+                                session.user.name
+                            ) : (
+                                <Link href='/login'>
+                                <a className='p-2'>Login</a>
+                                </Link>
+                            )}
                 </div>
             </nav>
         </header>
