@@ -11,6 +11,7 @@ function ProductScreen() {
     const {query} = useRouter();
     const {slug} = query;
     const product = data.products.find(x => x.slug === slug);
+    const router = useRouter();
     if(!product){
         return <div>Product Not Found</div>
     }
@@ -24,6 +25,7 @@ function ProductScreen() {
             return;
         }
         dispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity}})
+        router.push('/cart')
     }
   return (
     <Layout title={product.name}>
