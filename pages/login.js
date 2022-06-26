@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Link from 'next/link'
 import React,{useEffect} from 'react'
 import Layout from '../components/Layout'
