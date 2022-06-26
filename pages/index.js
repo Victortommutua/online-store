@@ -8,6 +8,9 @@ import { Store } from '../utils/Store';
 import axios from 'axios';
 //import { toast } from 'react-toastify';
 import toast from 'react-hot-toast';
+
+
+//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
 export default function Home({title, products}) {
   const {state, dispatch}= useContext(Store);
   const {cart} = state;
