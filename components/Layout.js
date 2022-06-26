@@ -3,11 +3,12 @@ import Link from 'next/link'
 import React, {useContext} from 'react'
 import { Store } from '../utils/Store'
 import {useState, useEffect} from 'react'
-import {ToastContainer} from 'react-toastify';
+//import {ToastContainer} from 'react-toastify';
 import { useSession,signOut } from "next-auth/react"
 import {Menu} from "@headlessui/react";
 import DropdownLink from './DropdownLink'
 import Cookies from 'js-cookie'
+import { Toaster } from 'react-hot-toast'
 function Layout({title, children}) {
     const { status, data: session } = useSession();
     const { state, dispatch} = useContext(Store);
@@ -28,7 +29,8 @@ function Layout({title, children}) {
         <meta name="description" content="Your Favorite online shopping store" />
         <link rel="icon" href="/logo.svg"/>
       </Head>
-      <ToastContainer position='bottom-center' limit={1}/>
+      <Toaster position="bottom-center" reverseOrder={false}/>
+      {/* <ToastContainer position='bottom-center' limit={1}/> */}
     <div className='flex min-h-screen flex-col justify-between'>
         <header>
             <nav className='flex h-12 justify-between items-center px-4 shadow-md'>
