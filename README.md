@@ -1,4 +1,4 @@
-Online Store
+E-Commerce Store
 
 #by victor mutua tom
 
